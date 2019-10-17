@@ -1,15 +1,15 @@
 import React from 'react';
 
-class Library extends React.Component {
+class Editor extends React.Component {
 
     render() {
         return(
             <div>
-                <h1>Template library page</h1>
+                <h1>Meme editor</h1>
             </div>
         );
     }
 
 }
 
-export default Library;
+export default Editor;
