@@ -6,17 +6,19 @@ class Home extends React.Component {
     render() {
         return(
             <div>
-                <h1>Home page</h1>
-                <Container>
-                <Row>
-                    <Col><Image src="MemeMaker.png"/></Col>
-                    <Col><Image src="MemeMaker.png"/></Col>
-                </Row>
-                <Row>
-                    <Col><Image src="MemeMaker.png"/></Col>
-                    <Col><Image src="MemeMaker.png"/></Col>
-                    <Col><Image src="MemeMaker.png"/></Col>
-                </Row>
+                <br></br>
+                <h1 class="text-center">Welcome to MemeMaker</h1>
+                <br></br>
+                <Container fluid>
+                        <Row className="justify-content-md-center">
+                            <Col ><Image src="MemeMakerHome_1.png"/></Col>
+                            <Col ><Image src="MemeMaker.png"/></Col>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col ><Image src="MemeMakerHome_2.png"/></Col>
+                            <Col ><Image src="MemeMaker.png"/></Col>
+                            <Col ><Image src="MemeMaker.png"/></Col>
+                        </Row>
                 </Container>
             </div>
         );
