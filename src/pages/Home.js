@@ -11,13 +11,13 @@ class Home extends React.Component {
                 <br></br>
                 <Container fluid>
                         <Row className="justify-content-md-center">
-                            <Col ><Image src="MemeMakerHome_1.png"/></Col>
-                            <Col ><Image src="MemeMaker.png"/></Col>
+                            <Col sm={6}><Image src="MemeMakerHome_1.png" fluid/></Col>
+                            <Col sm={6}><Image src="MemeMaker.png" fluid/></Col>
                         </Row>
                         <Row className="justify-content-md-center">
-                            <Col ><Image src="MemeMakerHome_2.png"/></Col>
-                            <Col ><Image src="MemeMaker.png"/></Col>
-                            <Col ><Image src="MemeMaker.png"/></Col>
+                            <Col sm={4}><Image src="MemeMakerHome_2.png" fluid/></Col>
+                            <Col sm={4}><Image src="MemeMaker.png" fluid/></Col>
+                            <Col sm={4}><Image src="MemeMaker.png" fluid/></Col>
                         </Row>
                 </Container>
             </div>

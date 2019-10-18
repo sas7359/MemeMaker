@@ -10,7 +10,7 @@ import Editor from '../pages/Editor';
 function SiteContainer() {
   return (
     <div className="App">
-      <Container>
+      <Container variant="light">
         <Switch>
           <Route exact path='/' component={Home}></Route>
           <Route exact path='/library' component={Library}></Route>
