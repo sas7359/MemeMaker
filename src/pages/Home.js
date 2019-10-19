@@ -9,10 +9,10 @@ class Home extends React.Component {
                 <br></br>
                 <h1 class="text-center">Welcome to MemeMaker</h1>
                 <br></br>
-                <Container fluid>
+                <Container>
                         <Row className="justify-content-md-center">
-                            <Col sm={6}><Image src="MemeMakerHome_1.png" fluid/></Col>
-                            <Col sm={6}><Image src="MemeMaker.png" fluid/></Col>
+                            <Col sm={4}><Image src="MemeMakerHome_1.png" fluid/></Col>
+                            <Col sm={4}><Image src="MemeMaker.png" fluid/></Col>
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col sm={4}><Image src="MemeMakerHome_2.png" fluid/></Col>
