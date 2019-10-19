@@ -1,11 +1,24 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 class Editor extends React.Component {
 
     render() {
         return(
             <div>
-                <h1>Meme editor</h1>
+                <br />
+                <h1 class="text-center">Meme Editor</h1>
+                <br />
+                <Container>
+                    <Row>
+                        <Col>
+                        </Col>
+                        <Col>
+                        </Col>
+                        <Col>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         );
     }

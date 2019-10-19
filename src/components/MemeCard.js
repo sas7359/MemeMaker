@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Accordion, Image, Col, Container, Row } from 'react-bootstrap';
+import { Card, Accordion, Image, Col, Container, Row, Media } from 'react-bootstrap';
 
 class MemeCard extends React.Component {
 
@@ -13,12 +13,18 @@ class MemeCard extends React.Component {
         return (
             <Card>
                 <Accordion.Toggle as={Card.Header} variant="link" eventKey={this.eventKey}>
-                    <Container>
-                        <Row>
-                            <Col sm={2}><Image src={this.imgSource} alt="yes" fluid/></Col>
-                            <Col sm={10}>{this.props.children}</Col>
-                        </Row>
-                    </Container>
+                    <Media>
+                        <Image
+                            width={128}
+                            height={128}
+                            className="align-self-center mr-3"
+                            src={this.imgSource}
+                            alt="Meme image"
+                        fluid />
+                        <Media.Body>
+                            {this.props.children}
+                        </Media.Body>
+                    </Media>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey={this.eventKey}>
                     <Card.Body>

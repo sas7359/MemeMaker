@@ -1,64 +1,7 @@
 import React from 'react';
 import MemeCard from '../components/MemeCard';
-import { Container, Accordion, Button, Modal, Form } from 'react-bootstrap';
-
-class UploadPrompt extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state =  {
-            image: null,
-            title: React.createRef(),
-            description: React.createRef(),
-        };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleImageChange = this.handleImageChange.bind(this);
-    }
-
-    handleImageChange(imgFile) {
-        this.setState({
-            image: imgFile.target.files[0],
-        })
-    }
-
-    handleSubmit() {
-        this.props.closeUpload();
-        const newImage = this.props.addImage(this.state.image);
-        this.props.updateCards(
-            newImage,
-            this.state.title.current.value,
-            this.state.description.current.value.toString()
-        );
-    }
-
-    render() {
-        return(
-            <Modal show={this.props.show} centered>
-                <Form onSubmit={this.handleSubmit}>
-                    <Modal.Body>
-                        <Form.Label>Upload</Form.Label>
-                        <Form.Control required
-                            id="memeImage"
-                            type="file"
-                            accept="image/*"
-                            onChange={this.handleImageChange}
-                            ref={this.state.image}
-                        />
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control required placeholder="Title of meme.." ref={this.state.title} />
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control required as="textarea" rows="3" placeholder="Description of meme.." ref={this.state.description}/>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="danger" onClick={this.props.closeUpload}>Cancel</Button>
-                        <Button variant="success" type="submit" >Upload</Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
-        );
-    }
-
-}
+import UploadPrompt from '../components/UploadPrompt';
+import { Container, Accordion, Button } from 'react-bootstrap';
 
 /*
 <MemeCard eventKey="2" imgSource="peepoClown.png">
@@ -87,22 +30,38 @@ class Library extends React.Component {
                 {
                     eventKey: "2",
                     imgSource: "peepoClown.png",
-                    title: "PeepoClown",
-                    description: "This is the peepoclown meme.",
+                    title: "PepoClown",
+                    description: 
+                    `
+                        The origin of "pepoclown", its original name,comes from a Discord server for a 3v3 League of 
+                        Legends community, The Shadow Isles .While the reason for creating this is unknown, the user is not. 
+                        The creator of "pepoclown" goes by the online alias as "Brizi".
+                    `,
                 },
                 {
                     eventKey: "1",
                     imgSource: "ScaredPatrickMeme.jpg",
                     title: "Scared Patrick",
-                    description: "This is the scared patrick meme from a spongebob episode.",
+                    description: 
+                    `   
+                        The scared patrick meme was a made up quote added to Patrick's sweater in the episode
+                        "My Pretty Seahorse" of Spongebob Squarepants.
+                    `,
                 },
                 {
                     eventKey: "0",
                     imgSource: "UgandaMeme.jpg",
                     title: "Ugandan Knuckles",
-                    description: "This is the ugandan knuckles meme.",
+                    description: 
+                    `   
+                        On January 3rd, Redditor JebusMcAzn submitted TanksBlast's "Ugandan Knuckles Tribe" 
+                        video to /r/youtubehaiku, where it received more than 400 points (93% upvoted) and 25 comments
+                        within 12 hours. On January 5th, Ebaumsworld published an article about the meme titled 
+                        "Ugandan Knuckles Is A Hilarious Meme That's Taken Gaming By Storm."
+                    `,
                 }
             ],
+            newMemeCards: [],
         }
         const setStateOverride = this.setState;
         this.setState = function() {
@@ -110,6 +69,7 @@ class Library extends React.Component {
             let updateArg = () => (arguments[1], sessionStorage.setItem('curLibraryState', JSON.stringify(this.state)));
             setStateOverride.bind(this)(arguments[0], updateArg);
         }
+        this.globalFileReader = new FileReader()
         this.setVisibility = this.setVisibility.bind(this);
         this.createNewCard = this.createNewCard.bind(this);
         this.sendImageUp = this.sendImageUp.bind(this);
@@ -130,7 +90,7 @@ class Library extends React.Component {
         newState.memeCards = this.state.memeCards;
         const newCard = {
             eventKey: newState.memeCards.length,
-            imgSource: image,
+            imgSource: `data:image/png;base64,${image}`,
             title: title,
             description: description,
         }

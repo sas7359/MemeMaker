@@ -26,10 +26,8 @@ class SiteContainer extends React.Component {
     addNewImageBlob(image) {
         const newState = {}
         newState.imageBlobs = this.state.imageBlobs;
-        const newImage = URL.createObjectURL(image);
-        newState.imageBlobs.push(newImage);
+        newState.imageBlobs.push(image);
         this.setState(newState);
-        return newImage;
     }
 
     render() {
