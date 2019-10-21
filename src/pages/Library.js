@@ -87,14 +87,14 @@ class Library extends React.Component {
 
     createNewCard(image, title, description) {
         const newState = {}
-        newState.memeCards = this.state.memeCards;
+        newState.newMemeCards = this.state.newMemeCards;
         const newCard = {
-            eventKey: newState.memeCards.length,
-            imgSource: `data:image/png;base64,${image}`,
+            eventKey: this.state.memeCards.length + this.state.newMemeCards.length,
+            imgSource: image,
             title: title,
             description: description,
         }
-        newState.memeCards.push(newCard);
+        newState.newMemeCards.push(newCard);
         this.setState(newState);
     }
 
@@ -111,12 +111,22 @@ class Library extends React.Component {
                     <br />
                     <UploadPrompt show={this.state.uploadWindowVisible} addImage={this.sendImageUp} updateCards={this.createNewCard} closeUpload={() => this.setVisibility(false)} />
                     <Accordion>
-                        {this.state.memeCards.map(memeCard => (
-                            <MemeCard eventKey={memeCard.eventKey} imgSource={memeCard.imgSource}>
-                                <h2>{memeCard.title}</h2>
-                                <p>{memeCard.description}</p> 
-                            </MemeCard>
-                        ))}
+                        <div>
+                            {this.state.memeCards.map(memeCard => (
+                                <MemeCard eventKey={memeCard.eventKey} imgSource={memeCard.imgSource}>
+                                    <h2>{memeCard.title}</h2>
+                                    <p>{memeCard.description}</p> 
+                                </MemeCard>
+                            ))}
+                        </div>
+                        <div>
+                            {this.state.newMemeCards.map(memeCard => (
+                                <MemeCard eventKey={memeCard.eventKey} imgSource={memeCard.imgSource}>
+                                    <h2>{memeCard.title}</h2>
+                                    <p>{memeCard.description}</p> 
+                                </MemeCard>
+                            ))}
+                        </div>
                     </Accordion>
                 </Container>
             </div>

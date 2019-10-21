@@ -7,6 +7,7 @@ class UploadPrompt extends React.Component {
     constructor(props) {
         super(props);
         this.state =  {
+            base64Img: null,
             image: null,
             title: React.createRef(),
             description: React.createRef(),
@@ -20,6 +21,7 @@ class UploadPrompt extends React.Component {
         const newImageFile = imgFile.target.files[0];
         let fileReader = new FileReader();
         fileReader.onloadend = () => {
+            console.log(newImageFile, fileReader.result);
             this.setState({
                 image: fileReader.result,
             })
