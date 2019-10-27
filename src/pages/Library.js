@@ -112,16 +112,16 @@ class Library extends React.Component {
                     <UploadPrompt show={this.state.uploadWindowVisible} addImage={this.sendImageUp} updateCards={this.createNewCard} closeUpload={() => this.setVisibility(false)} />
                     <Accordion>
                         <div>
-                            {this.state.memeCards.map(memeCard => (
-                                <MemeCard eventKey={memeCard.eventKey} imgSource={memeCard.imgSource}>
+                            {this.state.memeCards.map((memeCard, i) => (
+                                <MemeCard eventKey={memeCard.eventKey} key={i} imgSource={memeCard.imgSource}>
                                     <h2>{memeCard.title}</h2>
                                     <p>{memeCard.description}</p> 
                                 </MemeCard>
                             ))}
                         </div>
                         <div>
-                            {this.state.newMemeCards.map(memeCard => (
-                                <MemeCard eventKey={memeCard.eventKey} imgSource={memeCard.imgSource}>
+                            {this.state.newMemeCards.map((memeCard, i) => (
+                                <MemeCard eventKey={memeCard.eventKey} key={i} imgSource={memeCard.imgSource}>
                                     <h2>{memeCard.title}</h2>
                                     <p>{memeCard.description}</p> 
                                 </MemeCard>

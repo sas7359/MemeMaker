@@ -7,7 +7,7 @@ class Editor extends React.Component {
         return(
             <div>
                 <br />
-                <h1 class="text-center">Meme Editor</h1>
+                <h1 className="text-center">Meme Editor</h1>
                 <br />
                 <Container>
                     <Row>

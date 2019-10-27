@@ -44,18 +44,18 @@ class UploadPrompt extends React.Component {
         data.append('file', this.state.imageFile);
 
         axios.post("http://localhost:8000/upload", data, {}).then(response => {
-            console.log(response.statusText)
+            console.log(response);
         })
 
         this.props.closeUpload();
         //this.props.addImage(this.state.image);
-        /*this.props.updateCards(
-            this.state.image,
+        this.props.updateCards(
+            "http://localhost:3000/" + this.state.imageFile.name,
             this.state.title.current.value.toString(),
             this.state.description.current.value.toString()
         );
-        */
         this.setState({
+            imageFile: null,
             image: null,
         }) 
     }

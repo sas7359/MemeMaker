@@ -10,7 +10,7 @@ const publicStorage = multer.diskStorage({
         cb(null, 'public')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname )
+        cb(null, file.originalname)
     }
 })
 
