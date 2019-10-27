@@ -1,5 +1,6 @@
 
 import React from 'react';
+import axios from 'axios';
 import { Modal, Form, Button, Image } from 'react-bootstrap';
 
 class UploadPrompt extends React.Component {
@@ -7,7 +8,7 @@ class UploadPrompt extends React.Component {
     constructor(props) {
         super(props);
         this.state =  {
-            base64Img: null,
+            imageFile: null,
             image: null,
             title: React.createRef(),
             description: React.createRef(),
@@ -23,6 +24,7 @@ class UploadPrompt extends React.Component {
         fileReader.onloadend = () => {
             console.log(newImageFile, fileReader.result);
             this.setState({
+                imageFile: newImageFile,
                 image: fileReader.result,
             })
         }
@@ -37,13 +39,22 @@ class UploadPrompt extends React.Component {
     }
 
     handleSubmit() {
+
+        const data = new FormData();
+        data.append('file', this.state.imageFile);
+
+        axios.post("http://localhost:8000/upload", data, {}).then(response => {
+            console.log(response.statusText)
+        })
+
         this.props.closeUpload();
-        this.props.addImage(this.state.image);
-        this.props.updateCards(
+        //this.props.addImage(this.state.image);
+        /*this.props.updateCards(
             this.state.image,
             this.state.title.current.value.toString(),
             this.state.description.current.value.toString()
         );
+        */
         this.setState({
             image: null,
         }) 
