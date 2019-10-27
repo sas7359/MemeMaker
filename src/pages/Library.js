@@ -1,6 +1,7 @@
 import React from 'react';
 import MemeCard from '../components/MemeCard';
 import UploadPrompt from '../components/UploadPrompt';
+import { Link } from 'react-router-dom';
 import { Container, Accordion, Button } from 'react-bootstrap';
 
 /*
@@ -61,7 +62,6 @@ class Library extends React.Component {
                     `,
                 }
             ],
-            newMemeCards: [],
         }
         const setStateOverride = this.setState;
         this.setState = function() {
@@ -87,14 +87,14 @@ class Library extends React.Component {
 
     createNewCard(image, title, description) {
         const newState = {}
-        newState.newMemeCards = this.state.newMemeCards;
+        newState.memeCards = this.state.memeCards;
         const newCard = {
-            eventKey: this.state.memeCards.length + this.state.newMemeCards.length,
+            eventKey: this.state.memeCards.length,
             imgSource: image,
             title: title,
             description: description,
         }
-        newState.newMemeCards.push(newCard);
+        newState.memeCards.push(newCard);
         this.setState(newState);
     }
 
@@ -109,20 +109,28 @@ class Library extends React.Component {
                         Upload new meme +
                     </Button>
                     <br />
-                    <UploadPrompt show={this.state.uploadWindowVisible} addImage={this.sendImageUp} updateCards={this.createNewCard} closeUpload={() => this.setVisibility(false)} />
+                    <UploadPrompt 
+                        show={this.state.uploadWindowVisible} 
+                        addImage={this.sendImageUp} 
+                        updateCards={this.createNewCard} 
+                        closeUpload={() => this.setVisibility(false)} 
+                    />
                     <Accordion>
                         <div>
                             {this.state.memeCards.map((memeCard, i) => (
                                 <MemeCard eventKey={memeCard.eventKey} key={i} imgSource={memeCard.imgSource}>
-                                    <h2>{memeCard.title}</h2>
-                                    <p>{memeCard.description}</p> 
-                                </MemeCard>
-                            ))}
-                        </div>
-                        <div>
-                            {this.state.newMemeCards.map((memeCard, i) => (
-                                <MemeCard eventKey={memeCard.eventKey} key={i} imgSource={memeCard.imgSource}>
-                                    <h2>{memeCard.title}</h2>
+                                    <h2>{memeCard.title}
+                                        <Link 
+                                            to={{
+                                                pathname: "/Editor",
+                                                data: memeCard.imgSource
+                                            }}
+                                        >
+                                            <Button variant="primary" className="pull-right">
+                                                Open in editor
+                                            </Button>
+                                        </Link>
+                                    </h2>
                                     <p>{memeCard.description}</p> 
                                 </MemeCard>
                             ))}

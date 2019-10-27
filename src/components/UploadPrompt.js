@@ -22,7 +22,6 @@ class UploadPrompt extends React.Component {
         const newImageFile = imgFile.target.files[0];
         let fileReader = new FileReader();
         fileReader.onloadend = () => {
-            console.log(newImageFile, fileReader.result);
             this.setState({
                 imageFile: newImageFile,
                 image: fileReader.result,
@@ -31,33 +30,36 @@ class UploadPrompt extends React.Component {
         fileReader.readAsDataURL(newImageFile);
     }
 
-    handleCancel() {
+    handleCancel = () => {
         this.setState({
+            imageFile: null,
             image: null,
         }) 
         this.props.closeUpload();
     }
 
-    handleSubmit() {
+    handleSubmit = () => {
 
         const data = new FormData();
         data.append('file', this.state.imageFile);
 
         axios.post("http://localhost:8000/upload", data, {}).then(response => {
-            console.log(response);
-        })
+            console.log("SUCCESS", response);
+            // Callback on success, keep code here or picture doesnt load correctly! :)
+            this.props.updateCards(
+                "http://localhost:3000/" + this.state.imageFile.name,
+                this.state.title.current.value.toString(),
+                this.state.description.current.value.toString()
+            );
+            this.setState({
+                imageFile: null,
+                image: null,
+            });
 
-        this.props.closeUpload();
-        //this.props.addImage(this.state.image);
-        this.props.updateCards(
-            "http://localhost:3000/" + this.state.imageFile.name,
-            this.state.title.current.value.toString(),
-            this.state.description.current.value.toString()
-        );
-        this.setState({
-            imageFile: null,
-            image: null,
-        }) 
+            this.props.closeUpload();
+        }).catch(error => {
+            console.log(error);
+        })
     }
 
     render() {
