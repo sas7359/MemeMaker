@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Col, Row, Image, Button } from 'react-bootstrap';
-import { isAbsolute } from 'path';
 
 // Imline styling stuff cause too lazy to make css file :)
 const styles = {
