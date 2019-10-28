@@ -12,13 +12,13 @@ class Home extends React.Component {
                 <Container>
                     <div>
                         <Row className="justify-content-md-center">
-                            <Col sm={4}><Image src="MemeMakerHome_1.png" fluid/></Col>
-                            <Col sm={4}><Image src="MemeMaker.png" fluid/></Col>
+                            <Col sm={4}><Image src="MemeMakerHome_1.png" height="250px" width="250px" fluid/></Col>
+                            <Col sm={4}><Image src="peepoClown.png" fluid/></Col>
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col sm={4}><Image src="MemeMakerHome_2.png" fluid/></Col>
-                            <Col sm={4}><Image src="MemeMaker.png" fluid/></Col>
-                            <Col sm={4}><Image src="MemeMaker.png" fluid/></Col>
+                            <Col sm={4}><Image src="ScaredPatrickMeme.jpg" height="250px" width="250px" fluid/></Col>
+                            <Col sm={4}><Image src="UgandaMeme.jpg" height="250px" width="250px" fluid/></Col>
                         </Row>
                         <br />
                         <Row className="justify-content-md-center">
