@@ -64,7 +64,7 @@ class UploadPrompt extends React.Component {
 
     render() {
         return(
-            <Modal show={this.props.show} centered>
+            <Modal show={this.props.show} onHide={this.handleCancel} centered>
                 <Form onSubmit={this.handleSubmit}>
                     <Modal.Body>
                         <Form.Label>Upload</Form.Label>
