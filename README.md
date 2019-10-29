@@ -4,7 +4,7 @@
 ### Requirements:
 - Node.js: https://nodejs.org/en/download/
   
-To ensure you have Node.js correctly installed, type the below commands on our command line and ensure you receive a response:
+To ensure you have Node.js correctly installed, type the below commands on your command line and ensure you receive a response:
 - `node -v` 
 - `npm -v`
 
