@@ -2,7 +2,7 @@ import React from 'react';
 import MemeCard from '../components/MemeCard';
 import UploadPrompt from '../components/UploadPrompt';
 import { Link } from 'react-router-dom';
-import { Container, Accordion, Button } from 'react-bootstrap';
+import { Container, Accordion, Button, Card } from 'react-bootstrap';
 
 /*
 <MemeCard eventKey="2" imgSource="peepoClown.png">
@@ -131,7 +131,8 @@ class Library extends React.Component {
                                             </Button>
                                         </Link>
                                     </h2>
-                                    <p>{memeCard.description}</p> 
+                                    <p>{memeCard.description}</p>   
+                                    <small className="text-muted pull-right">Click for more info</small>
                                 </MemeCard>
                             ))}
                         </div>

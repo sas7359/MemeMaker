@@ -29,6 +29,7 @@ class MemeCard extends React.Component {
                 <Accordion.Collapse eventKey={this.eventKey}>
                     <Card.Body>
                         <Container>
+                            <h3>Created Memes</h3>
                             <Row>
                                 <Col sm={2}><Image src="placeholder.png" fluid/></Col>
                                 <Col sm={2}><Image src="placeholder.png" fluid/></Col>
