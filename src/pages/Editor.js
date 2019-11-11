@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
@@ -28,24 +28,53 @@ class Editor extends React.Component {
                         <ButtonToolbar>
 
                             {/* Add Text */}
-                            <Button variant="outline-primary" size="sm">
-                                <img src="AddText.png" width={24} height={24} alt="Add Text" onClick={this.addText} />
-                            </Button>
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                <Tooltip id={`tooltip-top`}>
+                                    <strong>Add text</strong>
+                                </Tooltip>
+                                }
+                            >
+                                <Button variant="outline-primary" size="sm">
+                                    <img src="AddText.png" width={24} height={24} alt="Add Text" onClick={this.addText} />
+                                </Button>
+                            </OverlayTrigger>
 
                             &nbsp; &nbsp;
 
                             {/* Deep Fry */}
-                            <Button variant="outline-primary" size="sm" onClick={this.deepFry}>
-                                <img src="DeepFry.png" width={24} height={24} alt="Deep Fry" onClick={this.deepFry} />
-                            </Button>
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                <Tooltip id={`tooltip-top`}>
+                                    <strong>Deep fry</strong>
+                                </Tooltip>
+                                }
+                            >
+                                <Button variant="outline-primary" size="sm" onClick={this.deepFry}>
+                                    <img src="DeepFry.png" width={24} height={24} alt="Deep Fry" onClick={this.deepFry} />
+                                </Button>
+                            </OverlayTrigger>
 
                             &nbsp; &nbsp;
 
                             {/* Lens Flare */}
-                            <Button variant="outline-primary" size="sm" onClick={this.lensFlare}>
-                                <img src="RedLensFlare.png" width={48} height={24} alt="Lens Flare" onClick={this.lensFlare} />
-                            </Button>
-
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                <Tooltip id={`tooltip-top`}>
+                                    <strong>Lens flare</strong>
+                                </Tooltip>
+                                }
+                            >
+                                <Button variant="outline-primary" size="sm" onClick={this.lensFlare}>
+                                    <img src="RedLensFlare.png" width={48} height={24} alt="Lens Flare" onClick={this.lensFlare} />
+                                </Button>
+                            </OverlayTrigger>
                             &nbsp; &nbsp;
 
                             <Button variant="outline-primary" size="sm" onClick={this.editFour}>
