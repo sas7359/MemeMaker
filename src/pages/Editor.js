@@ -1,12 +1,20 @@
 import React from 'react';
-import { Container, Row, Col, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import { Container, Row, Col, Image, OverlayTrigger, Tooltip, Button, ButtonToolbar} from 'react-bootstrap';
 
 class Editor extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.state = sessionStorage.getItem("curEditorState") ? JSON.parse(sessionStorage.getItem("curEditorState")) :
+            {}
+        const setStateOverride = this.setState;
+
+        this.setState = function () {
+            // eslint-disable-next-line
+            let updateArg = () => (arguments[1], sessionStorage.setItem('curEditorState', JSON.stringify(this.state)));
+            setStateOverride.bind(this)(arguments[0], updateArg);
+        }
 
         this.addText = this.addText.bind(this);
         this.deepFry = this.deepFry.bind(this);
@@ -14,6 +22,20 @@ class Editor extends React.Component {
         this.editFour = this.editFour.bind(this);
         this.editFive = this.editFive.bind(this);
         this.editSix = this.editSix.bind(this);
+        this.sendImageUp = this.sendImageUp.bind(this);
+        this.replaceImage = this.replaceImage.bind(this);
+    }
+
+    sendImageUp(image) {
+        this.props.addImage(image);
+    }
+
+    replaceImage(image) {
+        const newState = {}
+        newState.memeImage = this.state.memeImage;
+        const currentImage = this.props.addImage(image);
+        newState.memeImage.push(currentImage);
+        this.setState(newState);
     }
 
     render() {
@@ -77,21 +99,54 @@ class Editor extends React.Component {
                             </OverlayTrigger>
                             &nbsp; &nbsp;
 
-                            <Button variant="outline-primary" size="sm" onClick={this.editFour}>
-                                Edit 4
-                            </Button>
-
+                            {/* Edit 4 */}
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id={`tooltip-top`}>
+                                        <strong>Edit 4</strong>
+                                    </Tooltip>
+                                }
+                            >
+                                <Button variant="outline-primary" size="sm" onClick={this.editFour}>
+                                    Edit 4
+                                </Button>
+                            </OverlayTrigger>
                             &nbsp; &nbsp;
 
-                            <Button variant="outline-primary" size="sm" onClick={this.editFive}>
-                                Edit 5
-                            </Button>
-
+                            {/* Edit 5 */}
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id={`tooltip-top`}>
+                                        <strong>Edit 5</strong>
+                                    </Tooltip>
+                                }
+                            >
+                                <Button variant="outline-primary" size="sm" onClick={this.editFive}>
+                                    Edit 5
+                                </Button>
+                            </OverlayTrigger>
                             &nbsp; &nbsp;
 
-                            <Button variant="outline-primary" size="sm" onClick={this.editSix}>
-                                Edit 6
-                            </Button>
+                            {/* Edit 6 */}
+                            <OverlayTrigger
+                                key="top"
+                                placement="top"
+                                overlay={
+                                    <Tooltip id={`tooltip-top`}>
+                                        <strong>Edit 6</strong>
+                                    </Tooltip>
+                                }
+                            >
+                                <Button variant="outline-primary" size="sm" onClick={this.editSix}>
+                                    Edit 6
+                                </Button>
+                            </OverlayTrigger>
+                            &nbsp; &nbsp;
+
                         </ButtonToolbar>
                         {console.log(this.props.location.data)}
                     </Row>
@@ -122,10 +177,48 @@ class Editor extends React.Component {
 
     deepFry() {
 
+        if (this.sendImageUp == "peepoClown.png") {
+            this.replaceImage("peepoClown_Deepfried.png")
+
+        } else if (this.sendImageUp == "peepoClown_Lensflare.png") {
+            this.replaceImage("peepoClown_2edits.png")
+
+        } else if (this.sendImageUp == "UgandaMeme.png") {
+            this.replaceImage("UgandaMeme_Deepfried.png")
+
+        } else if (this.sendImageUp == "UgandaMeme_Lensflare.png") {
+            this.replaceImage("UgandaMeme_2edits.png")
+
+        } else if (this.sendImageUp == "ScaredPatrick.png") {
+            this.replaceImage("ScaredPatrick_Deepfried.png")
+
+        } else if (this.sendImageUp == "ScaredPatrick_Lensflare.png") {
+            this.replaceImage("ScaredPatrick_2edits.png")
+
+        }
     }
 
     lensFlare() {
 
+        if (this.sendImageUp == "peepoClown.png") {
+            this.replaceImage("peepoClown_Lensflare.png")
+
+        } else if (this.sendImageUp == "peepoClown_Deepfried.png") {
+            this.replaceImage("peepoClown_2edits.png")
+
+        } else if (this.sendImageUp == "UgandaMeme.png") {
+            this.replaceImage("UgandaMeme_Lensflare.png")
+
+        } else if (this.sendImageUp == "UgandaMeme_Deepfried.png") {
+            this.replaceImage("UgandaMeme_2edits.png")
+
+        } else if (this.sendImageUp == "ScaredPatrick.png") {
+            this.replaceImage("ScaredPatrick_Lensflare.png")
+
+        } else if (this.sendImageUp == "ScaredPatrick_Deepfried.png") {
+            this.replaceImage("ScaredPatrick_2edits.png")
+
+        }
     }
 
     editFour() {
