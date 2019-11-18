@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Image, OverlayTrigger, Tooltip, Button, ButtonToolbar} from 'react-bootstrap';
+import { Container, Row, Col, Image, OverlayTrigger, Tooltip, Button, ButtonToolbar } from 'react-bootstrap';
 
 class Editor extends React.Component {
 
@@ -33,13 +33,15 @@ class Editor extends React.Component {
     replaceImage(image) {
         const newState = {}
         newState.memeImage = this.state.memeImage;
-        const currentImage = this.props.addImage(image);
-        newState.memeImage.push(currentImage);
+        const currentImage = this.props.location.data
+        //const newImage = this.props.addImage(image);
+        this.props.location.data = image;
+        //newState.memeImage.push(newImage);
         this.setState(newState);
     }
 
     render() {
-        return(
+        return (
             <div>
                 <br />
                 <h1 className="text-center">Meme Editor</h1>
@@ -54,9 +56,9 @@ class Editor extends React.Component {
                                 key="top"
                                 placement="top"
                                 overlay={
-                                <Tooltip id={`tooltip-top`}>
-                                    <strong>Add text</strong>
-                                </Tooltip>
+                                    <Tooltip id={`tooltip-top`}>
+                                        <strong>Add text</strong>
+                                    </Tooltip>
                                 }
                             >
                                 <Button variant="outline-primary" size="sm">
@@ -71,9 +73,9 @@ class Editor extends React.Component {
                                 key="top"
                                 placement="top"
                                 overlay={
-                                <Tooltip id={`tooltip-top`}>
-                                    <strong>Deep fry</strong>
-                                </Tooltip>
+                                    <Tooltip id={`tooltip-top`}>
+                                        <strong>Deep fry</strong>
+                                    </Tooltip>
                                 }
                             >
                                 <Button variant="outline-primary" size="sm" onClick={this.deepFry}>
@@ -88,9 +90,9 @@ class Editor extends React.Component {
                                 key="top"
                                 placement="top"
                                 overlay={
-                                <Tooltip id={`tooltip-top`}>
-                                    <strong>Lens flare</strong>
-                                </Tooltip>
+                                    <Tooltip id={`tooltip-top`}>
+                                        <strong>Lens flare</strong>
+                                    </Tooltip>
                                 }
                             >
                                 <Button variant="outline-primary" size="sm" onClick={this.lensFlare}>
@@ -177,22 +179,22 @@ class Editor extends React.Component {
 
     deepFry() {
 
-        if (this.sendImageUp == "peepoClown.png") {
+        if (this.props.location.data == "peepoClown.png") {
             this.replaceImage("peepoClown_Deepfried.png")
 
-        } else if (this.sendImageUp == "peepoClown_Lensflare.png") {
+        } else if (this.props.location.data == "peepoClown_Lensflare.png") {
             this.replaceImage("peepoClown_2edits.png")
 
-        } else if (this.sendImageUp == "UgandaMeme.png") {
+        } else if (this.props.location.data == "UgandaMeme.jpg") {
             this.replaceImage("UgandaMeme_Deepfried.png")
 
-        } else if (this.sendImageUp == "UgandaMeme_Lensflare.png") {
+        } else if (this.props.location.data == "UgandaMeme_Lensflare.jpg") {
             this.replaceImage("UgandaMeme_2edits.png")
 
-        } else if (this.sendImageUp == "ScaredPatrick.png") {
+        } else if (this.props.location.data == "ScaredPatrickMeme.jpg") {
             this.replaceImage("ScaredPatrick_Deepfried.png")
 
-        } else if (this.sendImageUp == "ScaredPatrick_Lensflare.png") {
+        } else if (this.props.location.data == "ScaredPatrick_Lensflare.jpg") {
             this.replaceImage("ScaredPatrick_2edits.png")
 
         }
@@ -200,22 +202,22 @@ class Editor extends React.Component {
 
     lensFlare() {
 
-        if (this.sendImageUp == "peepoClown.png") {
+        if (this.props.location.data == "peepoClown.png") {
             this.replaceImage("peepoClown_Lensflare.png")
 
-        } else if (this.sendImageUp == "peepoClown_Deepfried.png") {
+        } else if (this.props.location.data == "peepoClown_Deepfried.png") {
             this.replaceImage("peepoClown_2edits.png")
 
-        } else if (this.sendImageUp == "UgandaMeme.png") {
-            this.replaceImage("UgandaMeme_Lensflare.png")
+        } else if (this.props.location.data == "UgandaMeme.jpg") {
+            this.replaceImage("UgandaMeme_Lensflare.jpg")
 
-        } else if (this.sendImageUp == "UgandaMeme_Deepfried.png") {
+        } else if (this.props.location.data == "UgandaMeme_Deepfried.png") {
             this.replaceImage("UgandaMeme_2edits.png")
 
-        } else if (this.sendImageUp == "ScaredPatrick.png") {
-            this.replaceImage("ScaredPatrick_Lensflare.png")
+        } else if (this.props.location.data == "ScaredPatrickMeme.jpg") {
+            this.replaceImage("ScaredPatrick_Lensflare.jpg")
 
-        } else if (this.sendImageUp == "ScaredPatrick_Deepfried.png") {
+        } else if (this.props.location.data == "ScaredPatrick_Deepfried.png") {
             this.replaceImage("ScaredPatrick_2edits.png")
 
         }
