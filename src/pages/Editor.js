@@ -168,6 +168,13 @@ class Editor extends React.Component {
                         <Col>
                         </Col>
                     </Row>
+                    {/* this row contains download button */}
+                    <br /><br />
+                    <Row>
+                        <a href="peepoClown_2edits.png" download="Meme.png"> 
+                        <button type="button">Download</button> 
+                        </a> 
+                    </Row>
                 </Container>
             </div>
         );
