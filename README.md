@@ -30,10 +30,15 @@ Install project:
 3. Save to computer and unzip
 
 Installing dependencies:
-1. On command line: `npm install`
+1. Open a command line in project directory
+1. Enter command `npm install`
 
 Running server & application:
-1. In cmd line 1: `npm run server`
-2. In cmd line 2: `npm start`
+1. Open a new command line
+2. In new command line, `cd` into `src` directory
+3. Enter command `npm run server`
+4. Open another new command line without closing the other opened one
+5. In command line, `cd` into `src` directory
+6. Enter command `npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
