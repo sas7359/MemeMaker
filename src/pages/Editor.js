@@ -142,12 +142,13 @@ class Editor extends React.Component {
                     <Row>
                         <Col sm={1}>
                         </Col>
-                        <Col sm={10}>
+                        <Col className="text-center" sm={10}>
                             <Image
-                                className="align-self-center mr-3"
+                                //className="align-self-center mr-3"
                                 src={this.props.location.data || "Blank.png"}
                                 alt="No Loaded image"
-                            fluid/>
+                                fluid
+                            />
                             {/* fluid */}
                         </Col>
                         <Col sm={1}>
