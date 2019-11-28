@@ -7,6 +7,7 @@ class MemeCard extends React.Component {
         super(props);
         this.eventKey = props.eventKey
         this.imgSource = props.imgSource
+        this.createdMemes = props.createdMemes
     }
 
     render() {
@@ -31,12 +32,11 @@ class MemeCard extends React.Component {
                         <Container>
                             <h3>Created Memes</h3>
                             <Row>
-                                <Col sm={2}><Image width={128} heigth={128} src="placeholder.png" fluid/></Col>
-                                <Col sm={2}><Image width={128} heigth={128} src="placeholder.png" fluid/></Col>
-                                <Col sm={2}><Image width={128} heigth={128} src="placeholder.png" fluid/></Col>
-                                <Col sm={2}><Image width={128} heigth={128} src="placeholder.png" fluid/></Col>
-                                <Col sm={2}><Image width={128} heigth={128} src="placeholder.png" fluid/></Col>
-                                <Col sm={2}><Image width={128} heigth={128} src="placeholder.png" fluid/></Col>
+                                {this.createdMemes.map(cMeme => (
+                                    <Col sm={2}>
+                                        <Image width={128} heigth={128} src={cMeme} fluid/>
+                                    </Col>
+                                ))}
                             </Row>
                         </Container>
                     </Card.Body>

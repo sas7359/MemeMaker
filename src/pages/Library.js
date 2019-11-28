@@ -38,6 +38,11 @@ class Library extends React.Component {
                         Legends community, The Shadow Isles .While the reason for creating this is unknown, the user is not. 
                         The creator of "pepoclown" goes by the online alias as "Brizi".
                     `,
+                    createdMemes: [
+                        "peepoClown_Deepfried.png",
+                        "peepoClown_2edits.png",
+                        "peepoClown_Lensflare.png"
+                    ]
                 },
                 {
                     eventKey: "1",
@@ -48,6 +53,11 @@ class Library extends React.Component {
                         The scared patrick meme was a made up quote added to Patrick's sweater in the episode
                         "My Pretty Seahorse" of Spongebob Squarepants.
                     `,
+                    createdMemes: [
+                        "ScaredPatrick_Deepfried.png",
+                        "ScaredPatrick_2edits.png",
+                        "ScaredPatrick_Lensflare.png"
+                    ]
                 },
                 {
                     eventKey: "0",
@@ -60,6 +70,11 @@ class Library extends React.Component {
                         within 12 hours. On January 5th, Ebaumsworld published an article about the meme titled 
                         "Ugandan Knuckles Is A Hilarious Meme That's Taken Gaming By Storm."
                     `,
+                    createdMemes: [
+                        "UgandaMeme_Deepfried.png",
+                        "UgandaMeme_2edits.png",
+                        "UgandaMeme_Lensflare.png"
+                    ]
                 }
             ],
         }
@@ -118,7 +133,7 @@ class Library extends React.Component {
                     <Accordion>
                         <div>
                             {this.state.memeCards.map((memeCard, i) => (
-                                <MemeCard eventKey={memeCard.eventKey} key={i} imgSource={memeCard.imgSource}>
+                                <MemeCard eventKey={memeCard.eventKey} key={i} imgSource={memeCard.imgSource} createdMemes={memeCard.createdMemes}>
                                     <h2>{memeCard.title}
                                         <Link 
                                             to={{
