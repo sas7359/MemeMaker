@@ -8,7 +8,8 @@ class Editor extends React.Component {
 
         this.state = sessionStorage.getItem("curEditorState") ? JSON.parse(sessionStorage.getItem("curEditorState")) :
             {
-                helpMenuVisible: false
+                helpMenuVisible: false,
+                memeImage: this.props.location.data || "Blank.png"
             }
         const setStateOverride = this.setState;
 
@@ -31,10 +32,10 @@ class Editor extends React.Component {
 
     replaceImage(image) {
         const newState = {}
-        newState.memeImage = this.state.memeImage;
+        newState.memeImage = this.props.location.data;
         //const currentImage = this.props.location.data
         //const newImage = this.props.addImage(image);
-        this.props.location.data = image;
+        this.props.location.data = image
         //newState.memeImage.push(newImage);
         this.setState(newState);
     }
@@ -145,7 +146,7 @@ class Editor extends React.Component {
                         <Col className="text-center" sm={10}>
                             <Image
                                 //className="align-self-center mr-3"
-                                src={this.props.location.data || "Blank.png"}
+                                src={this.state.memeImage || "Blank.png"}
                                 alt="No Loaded image"
                                 fluid
                             />
@@ -157,7 +158,7 @@ class Editor extends React.Component {
                     {/* this row contains download button */}
                     <br /><br />
                     <Row>
-                        <a href="peepoClown_2edits.png" download="Meme.png"> 
+                        <a href={this.state.memeImage} download="EditedMeme.png"> 
                         <button type="button">Download</button> 
                         </a> 
                     </Row>
@@ -168,22 +169,22 @@ class Editor extends React.Component {
 
     deepFry() {
 
-        if (this.props.location.data === "peepoClown.png") {
+        if (this.state.memeImage === "peepoClown.png") {
             this.replaceImage("peepoClown_Deepfried.png")
 
-        } else if (this.props.location.data === "peepoClown_Lensflare.png") {
+        } else if (this.state.memeImage === "peepoClown_Lensflare.png") {
             this.replaceImage("peepoClown_2edits.png")
 
-        } else if (this.props.location.data === "UgandaMeme.jpg") {
+        } else if (this.state.memeImage === "UgandaMeme.jpg") {
             this.replaceImage("UgandaMeme_Deepfried.png")
 
-        } else if (this.props.location.data === "UgandaMeme_Lensflare.jpg") {
+        } else if (this.state.memeImage === "UgandaMeme_Lensflare.jpg") {
             this.replaceImage("UgandaMeme_2edits.png")
 
-        } else if (this.props.location.data === "ScaredPatrickMeme.jpg") {
+        } else if (this.state.memeImage === "ScaredPatrickMeme.jpg") {
             this.replaceImage("ScaredPatrick_Deepfried.png")
 
-        } else if (this.props.location.data === "ScaredPatrick_Lensflare.jpg") {
+        } else if (this.state.memeImage === "ScaredPatrick_Lensflare.jpg") {
             this.replaceImage("ScaredPatrick_2edits.png")
 
         }
@@ -191,22 +192,22 @@ class Editor extends React.Component {
 
     lensFlare() {
 
-        if (this.props.location.data === "peepoClown.png") {
+        if (this.state.memeImage === "peepoClown.png") {
             this.replaceImage("peepoClown_Lensflare.png")
 
-        } else if (this.props.location.data === "peepoClown_Deepfried.png") {
+        } else if (this.state.memeImage === "peepoClown_Deepfried.png") {
             this.replaceImage("peepoClown_2edits.png")
 
-        } else if (this.props.location.data === "UgandaMeme.jpg") {
+        } else if (this.state.memeImage === "UgandaMeme.jpg") {
             this.replaceImage("UgandaMeme_Lensflare.jpg")
 
-        } else if (this.props.location.data === "UgandaMeme_Deepfried.png") {
+        } else if (this.state.memeImage === "UgandaMeme_Deepfried.png") {
             this.replaceImage("UgandaMeme_2edits.png")
 
-        } else if (this.props.location.data === "ScaredPatrickMeme.jpg") {
+        } else if (this.state.memeImage === "ScaredPatrickMeme.jpg") {
             this.replaceImage("ScaredPatrick_Lensflare.jpg")
 
-        } else if (this.props.location.data === "ScaredPatrick_Deepfried.png") {
+        } else if (this.state.memeImage === "ScaredPatrick_Deepfried.png") {
             this.replaceImage("ScaredPatrick_2edits.png")
 
         }
