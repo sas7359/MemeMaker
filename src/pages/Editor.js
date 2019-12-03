@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Modal, Image, OverlayTrigger, Tooltip, Button, ButtonToolbar } from 'react-bootstrap';
+import { Container, Row, Col, Modal, Image, OverlayTrigger, Tooltip, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 
 class Editor extends React.Component {
 
@@ -24,6 +24,14 @@ class Editor extends React.Component {
         this.sendImageUp = this.sendImageUp.bind(this);
         this.replaceImage = this.replaceImage.bind(this);
         this.setVisibility = this.setVisibility.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.location.data) {
+            this.setState({
+                memeImage: this.props.location.data
+            });   
+        }
     }
 
     sendImageUp(image) {
@@ -73,68 +81,74 @@ class Editor extends React.Component {
                     {/* This row contains the edits */}
                     <Row>
                         <Col xs>
-                            <ButtonToolbar>
+                            <ButtonToolbar className="justify-content-between">
+                                <ButtonGroup>
+                                    {/* Add Text */}
+                                    {
+                                    /*
+                                    <OverlayTrigger
+                                        key="top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id={`tooltip-top`}>
+                                                <strong>Add text</strong>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <Button variant="outline-primary" size="sm">
+                                            <img src="AddText.png" width={24} height={24} alt="Add Text" onClick={this.addText} />
+                                        </Button>
+                                    </OverlayTrigger>
 
-                                {/* Add Text */}
-                                {
-                                /*
-                                <OverlayTrigger
-                                    key="top"
-                                    placement="top"
-                                    overlay={
-                                        <Tooltip id={`tooltip-top`}>
-                                            <strong>Add text</strong>
-                                        </Tooltip>
+                                    &nbsp; &nbsp;
+                                    */
                                     }
-                                >
-                                    <Button variant="outline-primary" size="sm">
-                                        <img src="AddText.png" width={24} height={24} alt="Add Text" onClick={this.addText} />
-                                    </Button>
-                                </OverlayTrigger>
 
-                                &nbsp; &nbsp;
-                                */
-                                }
+                                    {/* Deep Fry */}
+                                    <OverlayTrigger
+                                        key="top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id={`tooltip-top`}>
+                                                <strong>Deep fry</strong>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <Button variant="outline-primary" size="sm" onClick={this.deepFry}>
+                                            <img src="DeepFry.png" width={32} height={32} alt="Deep Fry" onClick={this.deepFry} />
+                                        </Button>
+                                    </OverlayTrigger>
 
-                                {/* Deep Fry */}
-                                <OverlayTrigger
-                                    key="top"
-                                    placement="top"
-                                    overlay={
-                                        <Tooltip id={`tooltip-top`}>
-                                            <strong>Deep fry</strong>
-                                        </Tooltip>
-                                    }
-                                >
-                                    <Button variant="outline-primary" size="sm" onClick={this.deepFry}>
-                                        <img src="DeepFry.png" width={32} height={32} alt="Deep Fry" onClick={this.deepFry} />
-                                    </Button>
-                                </OverlayTrigger>
+                                    &nbsp; &nbsp;
 
-                                &nbsp; &nbsp;
-
-                                {/* Lens Flare */}
-                                <OverlayTrigger
-                                    key="top"
-                                    placement="top"
-                                    overlay={
-                                        <Tooltip id={`tooltip-top`}>
-                                            <strong>Lens flare</strong>
-                                        </Tooltip>
-                                    }
-                                >
-                                    <Button variant="outline-primary" size="sm" onClick={this.lensFlare}>
-                                        <img src="RedLensFlare.png" width={32} height={32} alt="Lens Flare" onClick={this.lensFlare} />
-                                    </Button>
-                                </OverlayTrigger>
-                                &nbsp; &nbsp;
-
+                                    {/* Lens Flare */}
+                                    <OverlayTrigger
+                                        key="top"
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id={`tooltip-top`}>
+                                                <strong>Lens flare</strong>
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <Button variant="outline-primary" size="sm" onClick={this.lensFlare}>
+                                            <img src="RedLensFlare.png" width={32} height={32} alt="Lens Flare" onClick={this.lensFlare} />
+                                        </Button>
+                                    </OverlayTrigger>
+                                    &nbsp; &nbsp;
+                                </ButtonGroup>
+                                <ButtonGroup>
+                                    <a href={this.state.memeImage} download="EditedMeme.png"> 
+                                        <Button variant="success" type="button">Download</Button> 
+                                    </a> 
+                                    &nbsp; 
+                                    <div>
+                                        <Button variant="info" onClick={() => this.setVisibility(true)}>
+                                            Need help?
+                                        </Button>
+                                    </div>
+                                </ButtonGroup>
                             </ButtonToolbar>
-                        </Col>
-                        <Col xs>
-                            <Button variant="info" className="pull-right" onClick={() => this.setVisibility(true)}>
-                                Need help?
-                            </Button>
                         </Col>
                         {/*console.log(this.props.location.data)*/}
                     </Row>
@@ -158,9 +172,7 @@ class Editor extends React.Component {
                     {/* this row contains download button */}
                     <br /><br />
                     <Row>
-                        <a href={this.state.memeImage} download="EditedMeme.png"> 
-                        <button type="button">Download</button> 
-                        </a> 
+                        
                     </Row>
                 </Container>
             </div>
@@ -178,13 +190,13 @@ class Editor extends React.Component {
         } else if (this.state.memeImage === "UgandaMeme.jpg") {
             this.replaceImage("UgandaMeme_Deepfried.png")
 
-        } else if (this.state.memeImage === "UgandaMeme_Lensflare.jpg") {
+        } else if (this.state.memeImage === "UgandaMeme_Lensflare.png") {
             this.replaceImage("UgandaMeme_2edits.png")
 
         } else if (this.state.memeImage === "ScaredPatrickMeme.jpg") {
             this.replaceImage("ScaredPatrick_Deepfried.png")
 
-        } else if (this.state.memeImage === "ScaredPatrick_Lensflare.jpg") {
+        } else if (this.state.memeImage === "ScaredPatrick_Lensflare.png") {
             this.replaceImage("ScaredPatrick_2edits.png")
 
         }
@@ -199,13 +211,13 @@ class Editor extends React.Component {
             this.replaceImage("peepoClown_2edits.png")
 
         } else if (this.state.memeImage === "UgandaMeme.jpg") {
-            this.replaceImage("UgandaMeme_Lensflare.jpg")
+            this.replaceImage("UgandaMeme_Lensflare.png")
 
         } else if (this.state.memeImage === "UgandaMeme_Deepfried.png") {
             this.replaceImage("UgandaMeme_2edits.png")
 
         } else if (this.state.memeImage === "ScaredPatrickMeme.jpg") {
-            this.replaceImage("ScaredPatrick_Lensflare.jpg")
+            this.replaceImage("ScaredPatrick_Lensflare.png")
 
         } else if (this.state.memeImage === "ScaredPatrick_Deepfried.png") {
             this.replaceImage("ScaredPatrick_2edits.png")
