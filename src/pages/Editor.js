@@ -114,9 +114,11 @@ class Editor extends React.Component {
                                             </Tooltip>
                                         }
                                     >
-                                        <Button variant="outline-primary" size="sm" onClick={this.deepFry}>
-                                            <img src="DeepFry.png" width={32} height={32} alt="Deep Fry" onClick={this.deepFry} />
-                                        </Button>
+                                        <div>
+                                            <Button variant="outline-primary" size="sm" onClick={this.deepFry}>
+                                                <img src="DeepFry.png" width={32} height={32} alt="Deep Fry" onClick={this.deepFry} />
+                                            </Button>
+                                        </div>
                                     </OverlayTrigger>
 
                                     &nbsp; &nbsp;
@@ -131,9 +133,11 @@ class Editor extends React.Component {
                                             </Tooltip>
                                         }
                                     >
-                                        <Button variant="outline-primary" size="sm" onClick={this.lensFlare}>
-                                            <img src="RedLensFlare.png" width={32} height={32} alt="Lens Flare" onClick={this.lensFlare} />
-                                        </Button>
+                                        <div>
+                                            <Button variant="outline-primary" size="sm" onClick={this.lensFlare}>
+                                                <img src="RedLensFlare.png" width={32} height={32} alt="Lens Flare" onClick={this.lensFlare} />
+                                            </Button>
+                                        </div>
                                     </OverlayTrigger>
                                     &nbsp; &nbsp;
                                 </ButtonGroup>
